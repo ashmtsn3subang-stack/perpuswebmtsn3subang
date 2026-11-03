@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PerpusWeb MTsN 3 Subang</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f5fb;--card:#fff;--tx:#1f2a44;--mu:#6b7690;--pr:#4a6fdc;--pr2:#3856b8;--bd:#e2e7f3;--ok:#1f9d6b;--wr:#f0b429;--er:#d64545;--side:#4a6fdc;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#121826;--card:#1b2336;--tx:#e8ecf8;--mu:#9aa6c4;--bd:#2a3550;--pr:#6b8cf0;--pr2:#8aa5f5;--side:#23305a}}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;font:15px/1.5 "Nunito Sans",system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--tx)}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--wr);outline-offset:2px}
+#login{min-height:100vh;display:grid;place-items:center;padding:16px;background:linear-gradient(135deg,#3b5fcf,#6b8cf0)}
+.lbox{background:var(--card);border-radius:14px;max-width:760px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:32px;box-shadow:0 20px 50px #0003}
+.lbrand{text-align:center;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.lbrand h1{margin:8px 0 0;font-size:24px;font-weight:800;letter-spacing:.5px}
+.lbrand p{margin:0;color:var(--mu)}
+.lform{display:flex;flex-direction:column;gap:12px;justify-content:center}
+.lform h2{text-align:center;margin:0 0 4px;font-weight:600}
+input,select{width:100%;padding:10px 14px;border:1px solid var(--bd);border-radius:10px;background:var(--card)}
+.btn{background:var(--pr);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--pr2)}
+.btn.s{padding:5px 10px;font-size:13px}.btn.g{background:transparent;color:var(--pr);border:1px solid var(--bd)}.btn.d{background:var(--er)}.btn.o{background:var(--ok)}
+.hint{font-size:12px;color:var(--mu);text-align:center}.err{color:var(--er);font-size:13px;min-height:18px;text-align:center}
+#app{display:none;min-height:100vh}
+aside{position:fixed;top:0;bottom:0;left:0;width:230px;background:var(--side);color:#fff;padding:18px 12px;padding-top:calc(18px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:4px;z-index:5;transition:transform .2s}
+.brand{display:flex;gap:10px;align-items:center;font-weight:800;padding:0 8px 14px;line-height:1.2}
+.brand small{display:block;font-weight:600;opacity:.8;font-size:11px}
+aside a{display:block;padding:10px 12px;border-radius:10px;color:#fff;text-decoration:none;opacity:.85;cursor:pointer}
+aside a:hover{opacity:1;background:#ffffff22}aside a.on{background:#fff;color:var(--pr);opacity:1;font-weight:700}
+aside .out{margin-top:auto;background:#ffffff22;border:0;color:#fff;padding:10px;border-radius:10px;cursor:pointer}
+main{margin-left:230px;padding:20px 24px 40px}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.top h2{margin:0;font-size:26px;font-weight:600;flex:1}
+.burger{display:none}
+.card{background:var(--card);border-radius:12px;box-shadow:0 2px 12px #1f2a4414;margin-bottom:18px;overflow:hidden}
+.card>h3{margin:0;padding:12px 18px;background:var(--pr);color:#fff;font-size:15px}
+.cb{padding:18px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+.stat{background:var(--card);border-radius:12px;padding:16px;border-left:5px solid var(--pr);box-shadow:0 2px 12px #1f2a4414}
+.stat b{display:block;font-size:28px}.stat span{color:var(--mu);font-size:13px}
+.stat:nth-child(2){border-color:var(--ok)}.stat:nth-child(3){border-color:var(--wr)}.stat:nth-child(4){border-color:var(--er)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:13px;color:var(--mu);margin:0 0 4px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
+th{color:var(--mu);font-weight:700;font-size:13px}
+.tag{padding:2px 9px;border-radius:20px;font-size:12px;font-weight:700;background:#4a6fdc22;color:var(--pr)}
+.tag.ok{background:#1f9d6b22;color:var(--ok)}.tag.er{background:#d6454522;color:var(--er)}
+.bar{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}.bar input{max-width:320px}
+.empty{padding:26px;text-align:center;color:var(--mu)}
+#toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:10px;display:none;z-index:9}
+@media(max-width:800px){.lbox{grid-template-columns:1fr}aside{transform:translateX(-100%)}aside.open{transform:none}main{margin-left:0;padding:14px}.burger{display:inline-block}.grid{grid-template-columns:1fr}}
+@media print{aside,.top .btn,.bar,.noprint{display:none!important}main{margin:0}}
+</style>
+</head>
+<body>
+<div id="login">
+ <form class="lbox" onsubmit="return doLogin(event)">
+  <div class="lbrand">
+   <svg width="96" height="96" viewBox="0 0 96 96" style="margin:auto"><circle cx="48" cy="48" r="46" fill="#dbe5ff"/><rect x="24" y="22" width="12" height="46" rx="2" fill="#4a6fdc"/><rect x="38" y="16" width="12" height="52" rx="2" fill="#f0b429"/><rect x="52" y="18" width="12" height="50" rx="2" fill="#e5484d"/><rect x="66" y="24" width="12" height="44" rx="2" fill="#1f9d6b"/><rect x="20" y="68" width="62" height="6" rx="3" fill="#2c3f8f"/></svg>
+   <h1>SISTEM INFORMASI</h1><p>PERPUSWEB</p><p><b>MTsN 3 Subang</b></p>
+  </div>
+  <div class="lform">
+   <h2>Login</h2>
+   <input id="u" placeholder="Username" autocomplete="username" required>
+   <input id="p" type="password" placeholder="Password" autocomplete="current-password" required>
+   <div class="err" id="le"></div>
+   <button class="btn">Login</button>
+   <div class="hint">Akun awal: admin / admin123</div>
+  </div>
+ </form>
+</div>
+
+<div id="app">
+ <aside id="side">
+  <div class="brand"><svg width="34" height="34" viewBox="0 0 96 96"><rect x="14" y="14" width="14" height="60" rx="3" fill="#fff"/><rect x="32" y="8" width="14" height="66" rx="3" fill="#f0b429"/><rect x="50" y="10" width="14" height="64" rx="3" fill="#ff8a8f"/><rect x="68" y="16" width="14" height="58" rx="3" fill="#7be0b3"/></svg><div>PERPUSWEB<small>MTsN 3 Subang</small></div></div>
+  <a data-p="dash">Dashboard</a><a data-p="buku">Data Buku</a><a data-p="tambah">Pengadaan Buku</a><a data-p="anggota">Data Anggota</a><a data-p="trx">Data Transaksi</a><a data-p="lap">Laporan</a>
+  <button class="out" onclick="logout()">Keluar</button>
+ </aside>
+ <main>
+  <div class="top"><button class="btn g burger" onclick="document.getElementById('side').classList.toggle('open')" aria-label="Menu">☰</button><h2 id="ttl"></h2><span id="who" style="color:var(--mu)"></span></div>
+  <div id="view"></div>
+ </main>
+</div>
+<div id="toast"></div>
+
+<script>
+var KEY="perpus_mtsn3_v1",S,page="dash",edit=null;
+function today(d){var x=new Date();x.setDate(x.getDate()+(d||0));return x.toISOString().slice(0,10)}
+function seed(){return{buku:[
+{id:1,judul:"Laskar Pelangi",kat:"Novel",pengarang:"Andrea Hirata",isbn:"9789793062792",penerbit:"Bentang",tahun:2005,stok:5},
+{id:2,judul:"Matematika Kelas VII",kat:"Pelajaran",pengarang:"Kemendikbud",isbn:"9786024273101",penerbit:"Pusbuk",tahun:2022,stok:12},
+{id:3,judul:"Ensiklopedia Sains",kat:"Referensi",pengarang:"Tim Penulis",isbn:"9786020333250",penerbit:"Erlangga",tahun:2019,stok:3},
+{id:4,judul:"Fiqih Remaja",kat:"Agama",pengarang:"Ahmad Fauzi",isbn:"9786020012345",penerbit:"Gema Insani",tahun:2020,stok:6}],
+anggota:[{id:1,nis:"2401001",nama:"Siti Aisyah",kelas:"VII-A"},{id:2,nis:"2401002",nama:"Muhammad Rizki",kelas:"VIII-B"}],
+trx:[],users:[{u:"admin",p:"admin123",n:"Admin"}]}}
+function load(){try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}if(!S)S=seed()}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(t._h);t._h=setTimeout(function(){t.style.display="none"},2200)}
+function nid(a){return a.reduce(function(m,x){return Math.max(m,x.id)},0)+1}
+function doLogin(e){e.preventDefault();var u=S.users.filter(function(x){return x.u===$("u").value.trim()&&x.p===$("p").value})[0];
+ if(!u){$("le").textContent="Username atau password salah.";return false}
+ $("login").style.display="none";$("app").style.display="block";$("who").textContent="Halo, "+u.n;go("dash");return false}
+function logout(){$("app").style.display="none";$("login").style.display="grid";$("p").value=""}
+document.querySelectorAll("aside a").forEach(function(a){a.onclick=function(){edit=null;go(a.dataset.p)}});
+var T={dash:"Dashboard",buku:"Data Buku",tambah:"Pengadaan Buku",anggota:"Data Anggota",trx:"Data Transaksi",lap:"Laporan"};
+function go(p){page=p;$("ttl").textContent=(p==="tambah"&&edit?"Ubah Buku":T[p]);
+ document.querySelectorAll("aside a").forEach(function(a){a.classList.toggle("on",a.dataset.p===(p))});
+ $("side").classList.remove("open");$("view").innerHTML=V[p]();if(window.after)after()}
+var KAT=["Novel","Pelajaran","Referensi","Agama","Sains","Biografi","Lainnya"];
+function dendaOf(t){if(t.kembali)return t.denda||0;var d=Math.floor((new Date(today())-new Date(t.batas))/864e5);return d>0?d*500:0}
+function rp(n){return"Rp"+n.toLocaleString("id-ID")}
+var V={
+dash:function(){var out=S.trx.filter(function(t){return!t.kembali}),late=out.filter(function(t){return dendaOf(t)>0});
+ var tot=S.buku.reduce(function(a,b){return a+b.stok},0);
+ return'<div class="stats"><div class="stat"><b>'+S.buku.length+'</b><span>Judul buku</span></div><div class="stat"><b>'+tot+'</b><span>Eksemplar tersedia</span></div><div class="stat"><b>'+S.anggota.length+'</b><span>Anggota</span></div><div class="stat"><b>'+out.length+'</b><span>Sedang dipinjam ('+late.length+' terlambat)</span></div></div>'+
+ '<div class="card"><h3>Peminjaman terbaru</h3><div class="tw">'+trxTable(S.trx.slice(-5).reverse(),false)+'</div></div>'},
+buku:function(){return'<div class="bar"><input id="q" placeholder="Cari judul, pengarang, atau ISBN" oninput="fb()"><button class="btn" onclick="edit=null;go(\'tambah\')">+ Tambah buku</button></div><div class="card"><div class="tw" id="bt"></div></div>'},
+tambah:function(){var b=edit?S.buku.filter(function(x){return x.id===edit})[0]:{judul:"",kat:"",pengarang:"",isbn:"",penerbit:"",tahun:new Date().getFullYear(),stok:1};
+ function f(l,i,v,t){return'<div><label>'+l+'</label><input id="'+i+'" type="'+(t||"text")+'" value="'+esc(v)+'"></div>'}
+ return'<div class="card"><h3>Form Buku</h3><div class="cb grid">'+f("Judul buku","f_judul",b.judul)+
+ '<div><label>Kategori</label><select id="f_kat"><option value="">--Pilih--</option>'+KAT.map(function(k){return'<option'+(k===b.kat?" selected":"")+'>'+k+'</option>'}).join("")+'</select></div>'+
+ f("Pengarang","f_pengarang",b.pengarang)+f("ISBN","f_isbn",b.isbn)+f("Penerbit","f_penerbit",b.penerbit)+f("Tahun terbit","f_tahun",b.tahun,"number")+f("Jumlah eksemplar","f_stok",b.stok,"number")+
+ '</div><div class="cb"><button class="btn" onclick="saveBuku()">Simpan data</button> <button class="btn g" onclick="edit=null;go(\'buku\')">Batal</button></div></div>'},
+anggota:function(){return'<div class="card"><h3>Tambah anggota</h3><div class="cb grid"><div><label>NIS</label><input id="a_nis"></div><div><label>Nama lengkap</label><input id="a_nama"></div><div><label>Kelas</label><input id="a_kelas" placeholder="contoh: VII-A"></div><div style="align-self:end"><button class="btn" onclick="addAng()">Simpan anggota</button></div></div></div><div class="card"><h3>Daftar anggota</h3><div class="tw">'+
+ (S.anggota.length?'<table><tr><th>NIS</th><th>Nama</th><th>Kelas</th><th></th></tr>'+S.anggota.map(function(a){return'<tr><td>'+esc(a.nis)+'</td><td>'+esc(a.nama)+'</td><td>'+esc(a.kelas)+'</td><td><button class="btn s d" onclick="delAng('+a.id+')">Hapus</button></td></tr>'}).join("")+'</table>':'<div class="empty">Belum ada anggota. Tambahkan siswa di atas.</div>')+'</div></div>'},
+trx:function(){var ab=S.buku.filter(function(b){return b.stok>0});
+ return'<div class="card"><h3>Peminjaman baru</h3><div class="cb grid"><div><label>Anggota</label><select id="t_a">'+S.anggota.map(function(a){return'<option value="'+a.id+'">'+esc(a.nama)+' ('+esc(a.kelas)+')</option>'}).join("")+'</select></div><div><label>Buku</label><select id="t_b">'+ab.map(function(b){return'<option value="'+b.id+'">'+esc(b.judul)+' (stok '+b.stok+')</option>'}).join("")+'</select></div><div><label>Lama pinjam (hari)</label><input id="t_l" type="number" value="7" min="1"></div><div style="align-self:end"><button class="btn" onclick="pinjam()">Pinjamkan</button></div></div></div><div class="card"><h3>Riwayat transaksi</h3><div class="tw">'+trxTable(S.trx.slice().reverse(),true)+'</div></div>'},
+lap:function(){var d=S.trx.reduce(function(a,t){return a+dendaOf(t)},0),k={};S.buku.forEach(function(b){k[b.kat]=(k[b.kat]||0)+b.stok});
+ return'<div class="bar"><button class="btn" onclick="window.print()">Cetak laporan</button></div><div class="stats"><div class="stat"><b>'+S.trx.length+'</b><span>Total transaksi</span></div><div class="stat"><b>'+S.trx.filter(function(t){return t.kembali}).length+'</b><span>Sudah kembali</span></div><div class="stat"><b>'+S.trx.filter(function(t){return!t.kembali}).length+'</b><span>Belum kembali</span></div><div class="stat"><b>'+rp(d)+'</b><span>Total denda</span></div></div>'+
+ '<div class="card"><h3>Stok per kategori</h3><div class="tw"><table><tr><th>Kategori</th><th>Eksemplar</th></tr>'+Object.keys(k).map(function(x){return'<tr><td>'+esc(x||"-")+'</td><td>'+k[x]+'</td></tr>'}).join("")+'</table></div></div><div class="card"><h3>Laporan transaksi</h3><div class="tw">'+trxTable(S.trx.slice().reverse(),false)+'</div></div>'}
+};
+function trxTable(a,act){if(!a.length)return'<div class="empty">Belum ada transaksi peminjaman.</div>';
+ return'<table><tr><th>Anggota</th><th>Buku</th><th>Pinjam</th><th>Batas</th><th>Status</th><th>Denda</th>'+(act?'<th></th>':'')+'</tr>'+a.map(function(t){var n=S.anggota.filter(function(x){return x.id===t.a})[0],b=S.buku.filter(function(x){return x.id===t.b})[0],dn=dendaOf(t);
+ return'<tr><td>'+esc(n?n.nama:"-")+'</td><td>'+esc(b?b.judul:"-")+'</td><td>'+t.tgl+'</td><td>'+t.batas+'</td><td><span class="tag '+(t.kembali?"ok":dn?"er":"")+'">'+(t.kembali?"Kembali "+t.kembali:dn?"Terlambat":"Dipinjam")+'</span></td><td>'+(dn?rp(dn):"-")+'</td>'+(act?'<td>'+(t.kembali?"":'<button class="btn s o" onclick="kembalikan('+t.id+')">Kembalikan</button>')+'</td>':'')+'</tr>'}).join("")+'</table>'}
+function fb(){var q=($("q")?$("q").value:"").toLowerCase(),r=S.buku.filter(function(b){return(b.judul+b.pengarang+b.isbn).toLowerCase().indexOf(q)>-1});
+ $("bt").innerHTML=r.length?'<table><tr><th>Judul</th><th>Kategori</th><th>Pengarang</th><th>ISBN</th><th>Tahun</th><th>Stok</th><th></th></tr>'+r.map(function(b){return'<tr><td>'+esc(b.judul)+'</td><td><span class="tag">'+esc(b.kat)+'</span></td><td>'+esc(b.pengarang)+'</td><td>'+esc(b.isbn)+'</td><td>'+esc(b.tahun)+'</td><td>'+b.stok+'</td><td><button class="btn s g" onclick="edit='+b.id+';go(\'tambah\')">Ubah</button> <button class="btn s d" onclick="delBuku('+b.id+')">Hapus</button></td></tr>'}).join("")+'</table>':'<div class="empty">Buku tidak ditemukan.</div>'}
+window.after=function(){if(page==="buku")fb()};
+function saveBuku(){var g=function(i){return $("f_"+i).value.trim()},o={judul:g("judul"),kat:g("kat"),pengarang:g("pengarang"),isbn:g("isbn"),penerbit:g("penerbit"),tahun:+g("tahun"),stok:+g("stok")};
+ if(!o.judul||!o.kat){toast("Judul dan kategori wajib diisi.");return}
+ if(edit){Object.assign(S.buku.filter(function(x){return x.id===edit})[0],o)}else{o.id=nid(S.buku);S.buku.push(o)}
+ save();toast("Buku disimpan.");edit=null;go("buku")}
+function delBuku(i){if(!confirm("Hapus buku ini?"))return;S.buku=S.buku.filter(function(b){return b.id!==i});save();go("buku")}
+function addAng(){var o={nis:$("a_nis").value.trim(),nama:$("a_nama").value.trim(),kelas:$("a_kelas").value.trim()};if(!o.nis||!o.nama){toast("NIS dan nama wajib diisi.");return}o.id=nid(S.anggota);S.anggota.push(o);save();toast("Anggota disimpan.");go("anggota")}
+function delAng(i){if(!confirm("Hapus anggota ini?"))return;S.anggota=S.anggota.filter(function(a){return a.id!==i});save();go("anggota")}
+function pinjam(){var a=+$("t_a").value,b=+$("t_b").value,l=+$("t_l").value||7;if(!a||!b){toast("Pilih anggota dan buku yang tersedia.");return}
+ S.buku.filter(function(x){return x.id===b})[0].stok--;S.trx.push({id:nid(S.trx),a:a,b:b,tgl:today(),batas:today(l),kembali:null,denda:0});save();toast("Buku dipinjamkan.");go("trx")}
+function kembalikan(i){var t=S.trx.filter(function(x){return x.id===i})[0];t.denda=dendaOf(t);t.kembali=today();S.buku.filter(function(x){return x.id===t.b})[0].stok++;save();toast(t.denda?"Dikembalikan. Denda "+rp(t.denda):"Buku dikembalikan.");go("trx")}
+load();
+</script>
+</body>
+</html>
