@@ -13,7 +13,7 @@ html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;min-height:100%;font:15px/1.5 "Nunito Sans",system-ui,Segoe UI,sans-serif;background:var(--bg);color:var(--tx)}
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--wr);outline-offset:2px}
-#login{min-height:100vh;display:grid;place-items:center;padding:16px;background:linear-gradient(135deg,#0a5a20,#2fb852)}
+#login{min-height:100vh;display:grid;grid-template-rows:1fr auto;place-items:center;padding:16px;background:linear-gradient(135deg,#0a5a20,#2fb852)}
 .lbox{background:var(--card);border-radius:14px;max-width:760px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:32px;box-shadow:0 20px 50px #0003}
 .lbrand{text-align:center;display:flex;flex-direction:column;justify-content:center;gap:6px}
 .lbrand h1{margin:8px 0 0;font-size:24px;font-weight:800;letter-spacing:.5px}
@@ -24,6 +24,8 @@ input,select{width:100%;padding:10px 14px;border:1px solid var(--bd);border-radi
 .btn{background:var(--pr);color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:700;cursor:pointer}
 .btn:hover{background:var(--pr2)}
 .btn.s{padding:5px 10px;font-size:13px}.btn.g{background:transparent;color:var(--pr);border:1px solid var(--bd)}.btn.d{background:var(--er)}.btn.o{background:var(--ok)}
+.lft{color:#ffffffd9;font-size:13px;text-align:center;padding-top:14px}
+.ft{margin-top:28px;padding:16px 0 4px;border-top:1px solid var(--bd);text-align:center;color:var(--mu);font-size:13px;line-height:1.6}.ft b{color:var(--tx)}
 .hint{font-size:12px;color:var(--mu);text-align:center}.err{color:var(--er);font-size:13px;min-height:18px;text-align:center}
 #app{display:none;min-height:100vh}
 aside{position:fixed;top:0;bottom:0;left:0;width:230px;background:var(--side);color:#fff;padding:18px 12px;padding-top:calc(18px + env(safe-area-inset-top,0px));display:flex;flex-direction:column;gap:4px;z-index:5;transition:transform .2s}
@@ -167,6 +169,7 @@ th{color:var(--mu);font-weight:700;font-size:13px}
    <button class="btn">Login</button>
   </div>
  </form>
+ <div class="lft">© <span class="yr"></span> Perpustakaan MTsN 3 Subang · Kabupaten Subang</div>
 </div>
 
 <div id="app">
@@ -178,6 +181,7 @@ th{color:var(--mu);font-weight:700;font-size:13px}
  <main>
   <div class="top"><button class="btn g burger" onclick="document.getElementById('side').classList.toggle('open')" aria-label="Menu">☰</button><h2 id="ttl"></h2><span id="who" style="color:var(--mu)"></span></div>
   <div id="view"></div>
+  <footer class="ft"><b>E-Perpustakaan MTsN 3 Subang</b><br>Sistem Informasi Perpustakaan Madrasah Tsanawiyah Negeri 3 Subang<br>© <span class="yr"></span> Perpustakaan MTsN 3 Subang. Hak cipta dilindungi.</footer>
  </main>
 </div>
 <div id="toast"></div>
@@ -268,6 +272,7 @@ async function dlTpl(k){var d=null;try{d=window.claude&&claude.use?await claude.
  else{name="template-import-siswa.xlsx";var bin=atob(TPL),u=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);data=u.buffer}
  await d.save({filename:name,data:data});toast("Template diunduh.")}
  catch(e){if(!e||e.code!=="declined")toast("Unduhan gagal. Coba lagi.")}}
+document.querySelectorAll(".yr").forEach(function(e){e.textContent=new Date().getFullYear()});
 load();
 </script>
 </body>
